@@ -44,7 +44,7 @@ jobs:
 
       - name: image metadata
         id: meta
-        uses: docker/metadata-action@38b36773831fce8789962056bf155ba063580c34
+        uses: docker/metadata-action@2ee3d3070bb41b40bf7305d15233321e12c1dc5c
         with:
           flavor: |
             latest=true
