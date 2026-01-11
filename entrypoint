@@ -11,9 +11,12 @@ elif [[ "${INPUT_UNSHALLOW}" == "true" ]]; then
 fi
 
 CURRENT=$(/bin/svu current)
+CURRENT_JSON=$(/bin/svu current --json)
 echo "current=${CURRENT}" >> "$GITHUB_OUTPUT"
+echo "current_json=${CURRENT_JSON}" >> "$GITHUB_OUTPUT"
 if [[ "${INPUT_CMD}" == "current" ]]; then
     echo "next=${CURRENT}" >> "$GITHUB_OUTPUT"
+    echo "next_json=${CURRENT_JSON}" >> "$GITHUB_OUTPUT"
     echo "changed=false" >> "$GITHUB_OUTPUT"
     exit 0
 fi
@@ -97,7 +100,9 @@ if [[ "${INPUT_FORCEPATCHINCREMENT}" == "true" ]] && [[ "${INPUT_CMD}" == "next"
 fi
 
 NEXT=$(/bin/svu ${INPUT_CMD} ${ARGS})
+NEXT_JSON=$(/bin/svu ${INPUT_CMD} --json ${ARGS})
 echo "next=${NEXT}" >> "$GITHUB_OUTPUT"
+echo "next_JSON=${NEXT_JSON}" >> "$GITHUB_OUTPUT"
 if [[ "${NEXT}" == "${CURRENT}" ]]; then
     echo "changed=false" >> "$GITHUB_OUTPUT"
 else

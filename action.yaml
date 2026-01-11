@@ -120,10 +120,17 @@ outputs:
   current:
     description: |-
       the output of `svu current` before running `svu $cmd`, eg `svu next`
+  current_json:
+    description: |-
+      the output of `svu current --json`
   next:
     description: |-
       the next version, if any cmd other than `current` was used
       eg `svu next`, `svu prerelease`, `svu major`, etc
+  next_json:
+    descrription: |-
+      the next version in json, if any cmd other than `current` was used
+      eg `svu next --json`, `svu prerelease --json`, `svu major --json`, etc
   changed:
     description: |-
       whether the next version calculated by `svu $cmd` matches `svu current`
