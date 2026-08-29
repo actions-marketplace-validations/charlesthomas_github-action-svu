@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -36,7 +36,7 @@ jobs:
         uses: docker/setup-buildx-action@v4
 
       - name: registry auth
-        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -44,7 +44,7 @@ jobs:
 
       - name: image metadata
         id: meta
-        uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302
         with:
           flavor: |
             latest=true
@@ -53,7 +53,7 @@ jobs:
             type=raw,enable=true,value=${{ steps.svu.outputs.current }}
 
       - name: build & push image
-        uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a
         with:
           build-args: SVU_VERSION=${{ env.SVU_VERSION }}
           context: .
